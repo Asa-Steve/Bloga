@@ -3,7 +3,7 @@ using Bloga.Common;
 using Bloga.Data;
 using Bloga.DTOs;
 using Bloga.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Bloga.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,23 +33,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("/posts", (BlogaDbContext ctx) =>
-{
-    var posts = ctx.Posts
-    .Include(p => p.Tags)
-    .Select(p => new PostDto(p)).ToList();
-    return Results.Ok(posts);
-
-})
-.WithName("GetAllPosts");
-
-app.MapGet("/post/{id}", async (int id, BlogaDbContext ctx) =>
-{
-    Console.WriteLine($"Post ID : {id}");
-    var foundPost = await ctx.Posts.FindAsync(id);
-    if (foundPost is null) return Results.NotFound();
-    return Results.Ok(foundPost);
-});
-
+var Post = app.MapGroup("api/posts");
+Post.MapGet("/", PostEndpoints.HandleGetAllPostsAsync).WithName("GetAllPosts");
+Post.MapGet("/{id}", PostEndpoints.HandleGetPostAsync).WithName("GetPost");
+Post.MapPost("/", PostEndpoints.HandleCreatePostAsync).WithName("CreatePostAsync");
+Post.MapPatch("/{id}", PostEndpoints.HandleUpdatePostAsync).WithName("UpdatePostAsync");
+Post.MapDelete("/{id}", PostEndpoints.HandleDeletePostAsync).WithName("DeletePostAsync");
 app.Run();

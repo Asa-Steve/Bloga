@@ -6,7 +6,7 @@ public class Category
     public string Name { get; set; } = string.Empty;
 
     // Navigation properties
-    public List<Post> Posts { get; set; } = [];
+    public List<Post>? Posts { get; set; }
 }
 
 /*

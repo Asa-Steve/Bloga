@@ -11,6 +11,6 @@ public class PostDto(Post post)
 
     // relationships
     public CategoryDto? Category { get; set; } = post.Category is null ? null : new CategoryDto(post.Category);
-    public List<TagDto>? Tags { get; set; } = post.Tags is null ? null : [.. post.Tags.Select(t => new TagDto(t))];
+    public IEnumerable<string>? Tags { get; set; } = post.Tags is null ? null : [.. post.Tags.Select(t => t.Name)];
     public List<CommentDto>? Comments { get; set; } = post.Comments is null ? null : [.. post.Comments.Select(c => new CommentDto(c))];
 }

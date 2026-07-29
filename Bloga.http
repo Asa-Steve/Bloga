@@ -1,9 +1,35 @@
 @Bloga_HostAddress = http://localhost:5088
 
-GET {{Bloga_HostAddress}}/posts/
+GET {{Bloga_HostAddress}}/api/posts/
 Accept: application/json
 
 ###
-GET {{Bloga_HostAddress}}/post/12
+GET {{Bloga_HostAddress}}/api/posts/12
+
+###
+POST {{Bloga_HostAddress}}/api/posts
+Content-Type: application/json
+
+{
+    "title":"test title 3",
+    "content":"this is another test content",
+    "categoryId":3,
+    "tags":["C#","Entity Framework Core","SQL"]
+}
+
+###
+
+PATCH  {{Bloga_HostAddress}}/api/posts/12
+Content-Type: application/json
+
+{
+    "title":"test title 2-edited",
+    "content":"this is another test content",
+    "categoryId":null,
+    "tags":["C#","Entity Framework Core","SQL"]
+}
+
+###
+DELETE {{Bloga_HostAddress}}/api/posts/11
 
 ###

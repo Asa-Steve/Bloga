@@ -2,12 +2,12 @@ using Bloga.Models;
 
 namespace Bloga.DTOs;
 
-public class PostCreateDto(string title, string content, int categoryId, string[]? tags = null)
+public class PostCreateDto
 {
-    public string Title { get; set; } = title;
-    public string Content { get; set; } = content;
+    public string Title { get; set; } = null!;
+    public string Content { get; set; } = null!;
 
     // relationships
-    public int CategoryId { get; set; } = categoryId;
-    public string[]? Tags { get; set; } = tags is null ? null : tags;
+    public int CategoryId { get; set; }
+    public string[]? Tags { get; set; }
 }

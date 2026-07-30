@@ -1,17 +1,18 @@
-@Bloga_HostAddress = http://localhost:5088
+@Bloga_HostAddress = http://localhost:5088/api
 
-GET {{Bloga_HostAddress}}/api/posts/
+// - POSTS
+GET {{Bloga_HostAddress}}/posts/
 Accept: application/json
 
 ###
-GET {{Bloga_HostAddress}}/api/posts/12
+GET {{Bloga_HostAddress}}/posts/2
 
 ###
-POST {{Bloga_HostAddress}}/api/posts
+POST {{Bloga_HostAddress}}/posts
 Content-Type: application/json
 
 {
-    "title":"test title 3",
+    "title":"test title 12",
     "content":"this is another test content",
     "categoryId":3,
     "tags":["C#","Entity Framework Core","SQL"]
@@ -19,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-PATCH  {{Bloga_HostAddress}}/api/posts/12
+PATCH  {{Bloga_HostAddress}}/posts/16
 Content-Type: application/json
 
 {
@@ -30,6 +31,22 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{Bloga_HostAddress}}/api/posts/11
+DELETE {{Bloga_HostAddress}}/posts/2
 
+
+// - CATEGORIES
+###
+GET {{Bloga_HostAddress}}/categories
+Accept: application/json
+
+###
+GET {{Bloga_HostAddress}}/categories/3
+
+###
+POST  {{Bloga_HostAddress}}/categories
+Content-Type: application/json
+
+{
+    "name":"Career"
+}
 ###

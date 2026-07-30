@@ -29,7 +29,9 @@ public class SeedData
     new () { Name = "Clean Code" },
     new () { Name = "Testing" }
 ];
-        categories = [new() { Name = "Technology" },
+        categories = [
+    new() { Name = "Uncategorized" },
+    new() { Name = "Technology" },
     new() { Name = "Programming" },
     new() { Name = "Web Development" },
     new() { Name = "Mobile Development" },
@@ -47,7 +49,7 @@ public class SeedData
         Content = "An introduction to the C# programming language.",
         PublishDate = new DateTime(2026, 1, 5),
         CategoryId = 2,
-        Tags = [tags[0], tags[1]]
+        Tags = [tags[2], tags[1]]
     },
     new()
     {
